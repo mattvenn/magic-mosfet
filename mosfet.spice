@@ -1,0 +1,16 @@
+* NGSPICE file created from mosfet.ext - technology: sky130A
+
+
+* Top level circuit mosfet
+
+X0 out gate VGND VSUBS sky130_fd_pr__nfet_01v8 w=550000u l=150000u
+R0 out VPWR sky130_fd_pr__res_generic_po w=460000u l=5.26e+06u
+C0 out gate 0.07fF
+C1 out VGND 0.05fF
+C2 VGND gate 0.04fF
+C3 VGND VSUBS 0.19fF
+C4 VPWR VSUBS 0.19fF
+C5 out VSUBS 0.11fF
+C6 gate VSUBS 0.18fF
+
+
