@@ -1,7 +1,6 @@
 MOSFET Simulation
 * this file edited to remove everything not in tt lib
 .lib "./sky130_fd_pr/models/sky130.lib.spice" tt
-.inc "sky130_fd_pr__res_generic_po.spice"
 
 * instantiate the inverter
 Xmosfet DRAIN GATE VGND VGND X0
@@ -13,11 +12,7 @@ Xmosfet DRAIN GATE VGND VGND X0
 * Top level circuit mosfet
 
 X0 drain gate source VSUBS sky130_fd_pr__nfet_01v8 w=650000u l=150000u
-C0 drain source 0.06fF
-C1 gate source 0.20fF
-C2 drain VSUBS 0.15fF
-C3 source VSUBS 0.15fF
-C4 gate VSUBS 0.37fF
+C0 gate VSUBS 0.06fF
 
 
 .ends
