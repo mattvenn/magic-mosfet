@@ -4,23 +4,20 @@ MOSFET Simulation
 .inc "sky130_fd_pr__res_generic_po.spice"
 
 * instantiate the inverter
-Xmosfet VPWR A Y VGND VGND X0
+Xmosfet DRAIN GATE VGND VGND X0
 
-.subckt X0 VPWR gate out VGND VSUBS
+.subckt X0 drain gate source VSUBS
 * NGSPICE file created from mosfet.ext - technology: sky130A
 
 
 * Top level circuit mosfet
 
-X0 out gate VGND VSUBS sky130_fd_pr__nfet_01v8 w=550000u l=150000u
-R0 out VPWR sky130_fd_pr__res_generic_po w=460000u l=5.26e+06u
-C0 out gate 0.07fF
-C1 gate VGND 0.04fF
-C2 out VGND 0.05fF
-C3 VGND VSUBS 0.19fF
-C4 VPWR VSUBS 0.19fF
-C5 out VSUBS 0.11fF
-C6 gate VSUBS 0.18fF
+X0 drain gate source VSUBS sky130_fd_pr__nfet_01v8 w=650000u l=150000u
+C0 drain source 0.06fF
+C1 gate source 0.20fF
+C2 drain VSUBS 0.15fF
+C3 source VSUBS 0.15fF
+C4 gate VSUBS 0.37fF
 
 
 .ends
@@ -29,16 +26,18 @@ C6 gate VSUBS 0.18fF
 Vgnd VGND 0 0
 Vdd VPWR VGND 1.8
 
+* create a resistor between the MOSFET drain and VPWR
+R VPWR DRAIN 10k
+
 * create pulse
-Vin A VGND pulse(0 1.8 1p 10p 10p 1n 2n)
-.tran 10e-12 2e-09 0e-00
+Vin GATE VGND pulse(0 1.8 1p 10p 10p 1n 2n)
+.tran 10p 2n 0
 
 .control
 run
 set color0 = white
 set color1 = black
-plot A Y
-plot i(Vdd)
+plot GATE DRAIN
 .endc
 
 .end
