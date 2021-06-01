@@ -1,10 +1,11 @@
 NAME=mosfet
+magicrc=$(PDK_ROOT)/sky130A/libs.tech/magic/sky130A.magicrc
 
 all: sim
 
 magic:
 	# for rcfile to work PDKPATH must be set correctly
-	magic -rcfile sky130A.magicrc $(NAME).mag
+	magic -rcfile $(magicrc) $(NAME).mag
 	# now in the command window type:
 	# extract
 	# ext2spice lvs
