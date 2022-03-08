@@ -1,11 +1,10 @@
 NAME=mosfet
-magicrc=$(PDK_ROOT)/sky130A/libs.tech/magic/sky130A.magicrc
 
 all: sim
 
 magic:
-	# for rcfile to work PDKPATH must be set correctly
-	magic -rcfile $(magicrc) $(NAME).mag
+	# for rcfile to work PDK_ROOT must be set correctly
+	magic -rcfile $(PDK_ROOT)/sky130A/libs.tech/magic/sky130A.magicrc $(NAME).mag
 	# now in the command window type:
 	# extract
 	# ext2spice lvs
@@ -13,8 +12,9 @@ magic:
 	# ext2spice
 
 simulation.spice: pre.spice $(NAME).spice post.spice
-    # magic puts an extra .end after extract, so remove it
-	sed -i -e 's/.end//' $(NAME).spice
+    # magic puts subckt and end around extract, so remove it
+	sed -i -e 's/.ends//' $(NAME).spice
+	sed -i -e 's/.subckt mosfet//' $(NAME).spice
 	# build a simulation with pre and post.spice
 	cat $^ > $@
 
