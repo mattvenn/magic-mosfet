@@ -1,5 +1,5 @@
 magic
-tech sky130B
+tech sky130A
 timestamp 1609431286
 << nmos >>
 rect 40 0 55 65

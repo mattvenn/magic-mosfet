@@ -4,7 +4,7 @@ all: sim
 
 magic:
 	# for rcfile to work PDK_ROOT must be set correctly
-	magic -rcfile $(PDK_ROOT)/$(PDK)/libs.tech/magic/$(PDK).magicrc $(NAME).mag
+	magic -rcfile $(PDK_ROOT)/sky130A/libs.tech/magic/sky130A.magicrc $(NAME).mag
 	# now in the command window type:
 	# extract
 	# ext2spice lvs
